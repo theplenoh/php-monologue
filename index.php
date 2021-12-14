@@ -1,11 +1,7 @@
 <?php
 require_once "common.php";
-require_once "dbinfo.php";
 
-$screenname = "Plenoh";
-
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-mysqli_query($conn, "SET NAMES utf8");
+session_start();
 
 if(!isset($_GET['page_num']))
     $page_num = 1;
@@ -28,12 +24,26 @@ $page_max = ceil($total / $page_size);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
 </head>
+
 <body>
 <header>
     <nav class="navbar bg-dark navbar-dark">
-        <a class="navbar-brand"><?php echo "{$screenname}&rsquo;s Monologue"; ?></a>
+        <a class="navbar-brand" href="index.php"><?php echo "{$screenname}&rsquo;s Monologue"; ?></a>
         <ul class="navbar-nav float-right">
-            <li class="nav-item"><a class="nav-link" href="javascript:;">Login</a></li>
+<?php
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
+{
+?>
+            <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+<?php
+}
+else
+{
+?>
+            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+<?php
+}
+?>
         </ul>
     </nav>
 </header>
