@@ -30,4 +30,12 @@ function get_day($date, $locale)
         return $days_ko[date('w', strtotime($date))];
     }
 }
+
+require_once "dbinfo.php";
+
+$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+mysqli_query($conn, "SET NAMES utf8");
+
+$result = mysqli_query($conn, "SELECT screenname FROM monolog_auth WHERE username='plenoh'");
+$screenname = mysqli_fetch_array($result, MYSQLI_ASSOC)['screenname'];
 ?>
