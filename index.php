@@ -1,5 +1,5 @@
 <?php
-require_once "lib.php";
+require_once "common.php";
 require_once "dbinfo.php";
 
 $screenname = "Plenoh";
