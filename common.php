@@ -1,4 +1,5 @@
 <?php
+/*** default ***/
 // Encoding
 header("Content-Type: text/html; charset=utf-8");
 
@@ -6,6 +7,7 @@ header("Content-Type: text/html; charset=utf-8");
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+/*** lib ***/
 function sanitize($text)
 {
     return htmlentities(addslashes($text));
@@ -31,11 +33,12 @@ function get_day($date, $locale)
     }
 }
 
+/*** database ***/
 require_once "dbinfo.php";
 
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 mysqli_query($conn, "SET NAMES utf8");
 
-$result = mysqli_query($conn, "SELECT screenname FROM monolog_auth WHERE username='plenoh'");
+$result = mysqli_query($conn, "SELECT screenname FROM monolog_auth");
 $screenname = mysqli_fetch_array($result, MYSQLI_ASSOC)['screenname'];
 ?>
