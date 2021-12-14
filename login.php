@@ -15,7 +15,20 @@ require_once "common.php";
     <nav class="navbar bg-dark navbar-dark">
         <a class="navbar-brand" href="index.php"><?php echo "{$screenname}&rsquo;s Monologue"; ?></a>
         <ul class="navbar-nav float-right">
+<?php
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
+{
+?>
             <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+<?php
+}
+else
+{
+?>
+            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+<?php
+}
+?>
         </ul>
     </nav>
 </header>
@@ -25,15 +38,14 @@ require_once "common.php";
         <div class="col-xs-12 w-100 p-3">
             <form action="login_ok.php" method="post">
                 <div class="form-group">
-                    <label for="username">아이디: </label>
+                    <label for="username">Username: </label>
                     <input type="text" id="username" name="username" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="password">패스워드: </label>
+                    <label for="password">Password: </label>
                     <input type="password" id="password" name="password" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">로그인</button>
-                <!--input type="submit" value="로그인" class="btn btn-primary"-->
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
