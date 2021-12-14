@@ -7,8 +7,18 @@ $screenname = "Plenoh";
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 mysqli_query($conn, "SET NAMES utf8");
 
+if(!isset($_GET['page_num']))
+    $page_num = 1;
+else
+    $page_num = $_GET['page_num'];
+
+$page_size = 10;
+$page_scale = 5;
+
 $result = mysqli_query($conn, "SELECT COUNT(*) FROM monolog_entries");
 $total = mysqli_fetch_array($result)[0];
+
+$page_max = ceil($total / $page_size);
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -42,9 +52,14 @@ if($total == 0)
 }
 else
 {
-    $query = "SELECT * FROM monolog_entries ORDER BY id DESC";
-    $result = mysqli_query($conn, $query);
+    $offset = ($page_num - 1) * $page_size;
 
+    $block = floor(($page_num - 1) / $page_scale);
+
+    $query = "SELECT * FROM monolog_entries ORDER BY id DESC LIMIT ${offset}, ${page_size}";
+    $result = mysqli_query($conn, $query);
+?>
+<?php
     while($entry = mysqli_fetch_array($result))
     {
         $content = filter($entry['content']);
@@ -58,6 +73,44 @@ else
             </section>
 <?php
     }
+}
+?>
+<?php
+if($total > 0)
+{
+?>
+            <section>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+<?php $prev_block = ($block - 1) * $page_scale + 1; ?>
+                        <a class="page-link" href="<?php if($block > 0) { echo "?page_num={$prev_block}"; } else { echo "javascript:;"; } ?>">&laquo;</a>
+                    </li>
+                    <li class="page-item">
+<?php $prev_page = $page_num - 1; ?>
+                        <a class="page-link" href="<?php if($page_max > 1 && $offset != 0 && $page_num && $page_num > 1) { echo "?page_num={$prev_page}"; } else { echo "javascript:;"; } ?>">&lsaquo;</a>
+                    </li>
+<?php
+    $start_page = $block * $page_scale + 1;
+    for($i=1; $i<=$page_scale && $start_page<=$page_max; $i++, $start_page++)
+    {
+?>
+                    <li class="page-item<?php if($start_page == $page_num) { echo " active"; } ?>">
+                        <a class="page-link" href="<?php if($start_page == $page_num) { echo "javascript:;"; } else { echo "?page_num={$start_page}"; }; ?>"><?php echo "{$start_page}"; ?></a>
+                    </li>
+<?php
+    }
+?>
+                    <li class="page-item">
+<?php $next_page = $page_num + 1; ?>
+                        <a class="page-link" href="<?php if($page_max > $page_num) { echo "?page_num={$next_page}"; } else { echo "javascript:;"; } ?>">&rsaquo;</a>
+                    </li>
+                    <li class="page-item">
+<?php $next_block = ($block + 1)*$page_scale + 1; ?>
+                        <a class="page-link" href="<?php if($page_max > ($block + 1)*$page_scale) { echo "?page_num={$next_block}"; } else { echo "javascript:;"; } ?>">&raquo;</a>
+                    </li>
+                </ul>
+            </section>
+<?php
 }
 ?>
             <footer class="mt-3 mb-3">
