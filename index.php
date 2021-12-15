@@ -8,7 +8,7 @@ if(!isset($_GET['page_num']))
 else
     $page_num = $_GET['page_num'];
 
-$page_size = 10;
+$page_size = 7;
 $page_scale = 5;
 
 $result = mysqli_query($conn, "SELECT COUNT(*) FROM monolog_entries");
