@@ -1,4 +1,6 @@
 <?php
+require_once "common.php";
+
 session_start();
 
 $_SESSION = array();
