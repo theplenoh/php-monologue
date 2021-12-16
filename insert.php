@@ -1,7 +1,7 @@
 <?php
 include "common.php";
 
-if(!$_POST['content'])
+if(!isset($_POST['content']))
     die("받아 온 포스팅 내용이 없습니다.");
 
 $content = sanitize($_POST['content']);
