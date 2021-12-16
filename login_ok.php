@@ -45,7 +45,7 @@ mysqli_stmt_fetch($stmt);
 
 if(mysqli_stmt_num_rows($stmt) == 1 && password_verify($password, $hashed_password))
 {
-    session_start();
+    @session_start();
 
     $_SESSION['loggedin'] = true;
 

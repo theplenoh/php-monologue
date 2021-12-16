@@ -8,7 +8,7 @@ if(!isset($_GET['page_num']))
 else
     $page_num = $_GET['page_num'];
 
-$page_size = 7;
+$page_size = 10;
 $page_scale = 5;
 
 $result = mysqli_query($conn, "SELECT COUNT(*) FROM monolog_entries");
@@ -49,6 +49,25 @@ else
 </header>
 
 <div class="container">
+<?php
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true)
+{
+?>
+    <div class="row">
+        <div class="col-xs-12 m-3 mt-4 w-100">
+            <form action="insert.php" method="post">
+                <div class="form-group">
+                    <textarea class="form-control p-3" name="content"></textarea>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Post!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php
+}
+?>
     <div class="row">
         <div class="col-xs-12 w-100 p-3">
 <?php
