@@ -27,6 +27,7 @@ alert("{$message}");
 location.href="login.php";
 </script>
 EOT;
+exit;
 }
 
 $username = sanitize($username);
