@@ -27,25 +27,7 @@ $page_max = ceil($total / $page_size);
 
 <body>
 <header>
-    <nav class="navbar bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.php"><?php echo "{$screenname}&rsquo;s Monologue"; ?></a>
-        <ul class="navbar-nav float-right">
-<?php
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
-{
-?>
-            <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-<?php
-}
-else
-{
-?>
-            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
-<?php
-}
-?>
-        </ul>
-    </nav>
+<?php require_once "nav.php"; ?>
 </header>
 
 <div class="container">
