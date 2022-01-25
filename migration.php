@@ -32,10 +32,19 @@ exit;
 <div class="container">
     <div class="row">
         <div class="col-xs-12 w-100 p-3">
-            <h1>Export</h1>
-            <p>
-                <a class="btn btn-primary" href="export_ok.php">Run!</a>
-            </p>
+            <h1>Migration</h1>
+            <section>
+                <h2>Export</h2>
+                <p>
+                    <a class="btn btn-primary" href="export_run.php">Run!</a>
+                </p>
+            </section>
+            <section>
+                <h2>Import</h2>
+                <p>
+                    <a class="btn btn-primary" href="import_run.php">Run!</a>
+                </p>
+            </section>
         </div>
     </div>
 </div>

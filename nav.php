@@ -15,7 +15,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true)
 else
 {
 ?>
-                <li class="nav-item"><a class="nav-link" href="export.php">Export</a></li>
+                <li class="nav-item"><a class="nav-link" href="migration.php">Migration</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
 <?php
 }
