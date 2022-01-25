@@ -38,6 +38,11 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true)
     <div class="row">
         <div class="col-xs-12 m-3 mt-4 w-100">
             <form action="insert.php" method="post">
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="visibility" value="private"> Private
+                    </label>
+                </div>
                 <div class="form-group">
                     <textarea class="form-control p-3" name="content"></textarea>
                 </div>
@@ -74,14 +79,30 @@ else
     while($entry = mysqli_fetch_array($result))
     {
         $content = filter($entry['content']);
+        $visibility = (int)$entry['visibility'];
         $wdate = explode(" ", $entry['wdate']);
         $customdate = $wdate[0].' '.get_day($wdate[0], "en").' '.$wdate[1];
-
+?>
+<?php
+        if((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && $visibility == 0)
+        {
+?>
+            <section class="card bg-secondary text-white mt-3 mb-3">
+                <div class="card-body"><?php echo $content; ?> <small class="small">(Private)</small></div>
+                <div class="card-footer small"><?php echo $customdate; ?></div>
+            </section>
+<?php
+        }
+        else if($visibility == 1)
+        {
 ?>
             <section class="card mt-3 mb-3">
                 <div class="card-body"><?php echo $content; ?></div>
                 <div class="card-footer small"><?php echo $customdate; ?></div>
             </section>
+<?php
+        }
+?>
 <?php
     }
 }
