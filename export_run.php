@@ -40,7 +40,7 @@ $result = mysqli_query($conn, $query);
 <?php
 $xml = "<monologue>\n";
 
-while($record = mysqli_fetch_array($result, MYSQLI_NUM))   
+while($record = mysqli_fetch_array($result, MYSQLI_NUM))
 {
     $entry = array(
         'entryID' => $record[0], 

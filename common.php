@@ -39,6 +39,6 @@ require_once "dbinfo.php";
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 mysqli_query($conn, "SET NAMES utf8");
 
-$result = mysqli_query($conn, "SELECT screenname FROM monolog_auth");
+$result = mysqli_query($conn, "SELECT screenname FROM monologue_auth");
 $screenname = mysqli_fetch_array($result, MYSQLI_ASSOC)['screenname'];
 ?>

@@ -11,7 +11,7 @@ else
 $page_size = 10;
 $page_scale = 5;
 
-$result = mysqli_query($conn, "SELECT COUNT(*) FROM monolog_entries");
+$result = mysqli_query($conn, "SELECT COUNT(*) FROM monologue_entries");
 $total = mysqli_fetch_array($result)[0];
 
 $page_max = ceil($total / $page_size);
@@ -67,7 +67,7 @@ else
 
     $block = floor(($page_num - 1) / $page_scale);
 
-    $query = "SELECT * FROM monolog_entries ORDER BY id DESC LIMIT ${offset}, ${page_size}";
+    $query = "SELECT * FROM monologue_entries ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
     $result = mysqli_query($conn, $query);
 ?>
 <?php
