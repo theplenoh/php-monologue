@@ -35,18 +35,17 @@ exit;
             <h1>Import Result</h1>
             <p>
 <?php
-$xml=simplexml_load_file("backup-monologue-20220125-noBR.xml") or die("Error: cannot create object");
+$xml=simplexml_load_file("backups/backup-monologue-20220203-154609.xml") or die("Error: cannot create object");
 ?>
             </p>
             <pre>
 <?php
-$idx = 117;
-
-for($idx=117; $idx >= 0; $idx--)
+$idx = count($xml->entry) - 1;
+for($idx; $idx >= 0; $idx--)
 {
-    $content = sanitize($xml->entry[$idx]->content);
+    $content = ($xml->entry[$idx]->content);
     $wdate = ($xml->entry[$idx]->wdate);
-    $visibility = ($xml->entry[$idx]->visibility);
+    $visibility = ($xml->entry[$idx]->visibility)=="public"? "1":"0";
 
     $query = "INSERT INTO monologue_entries (content, wdate, visibility) VALUES('{$content}', '{$wdate}', '{$visibility}')";
 

@@ -33,21 +33,20 @@ exit;
     <div class="row">
         <div class="col-xs-12 w-100 p-3">
 <?php
-$query = "SELECT * FROM monolog_entries ORDER by id DESC";
+$query = "SELECT * FROM monologue_entries ORDER by entryID DESC";
 $result = mysqli_query($conn, $query);
 ?>
             <h1>Export Result</h1>
+            <pre>
 <?php
-$xml = "<monologue>\n";
+$xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+$xml .= "<monologue>\n";
 
 while($record = mysqli_fetch_array($result, MYSQLI_NUM))
 {
-    $entry = array(
-        'entryID' => $record[0], 
-        'content' => $record[1], 
-        'wdate' => $record[2], 
-        'visibility' => "public"
-    );
+    $entry['content'] = $record[1];
+    $entry['wdate'] = $record[2];
+    $entry['visibility'] = $record[3]? "public":"private";
 
     $xml .= "<entry>\n";
 
@@ -62,13 +61,17 @@ while($record = mysqli_fetch_array($result, MYSQLI_NUM))
 }
 
 $xml .= "</monologue>";
-//echo(htmlentities($xml));
+echo(htmlentities($xml));
 ?>
+            </pre>
             <p>
 <?php
-$filename = "backup-monologue.xml";
-$homedir = substr($_SERVER['DOCUMENT_ROOT'], 0, strrpos($_SERVER['DOCUMENT_ROOT'], '/'));
-$filepath = $homedir.'/'.$filename;
+$datetime = date("Ymd-His", time());
+
+$filename = "backups/backup-monologue-{$datetime}.xml";
+//$homedir = substr($_SERVER['DOCUMENT_ROOT'], 0, strrpos($_SERVER['DOCUMENT_ROOT'], '/'));
+
+$filepath = $filename;
 
 $fp = fopen($filepath, "w");
 
