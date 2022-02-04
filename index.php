@@ -3,6 +3,11 @@ require_once "common.php";
 
 session_start();
 
+$flag_loggedin = false;
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true)
+    $flag_loggedin = true;
+
+
 if(!isset($_GET['page_num']))
     $page_num = 1;
 else
@@ -32,7 +37,7 @@ $page_max = ceil($total / $page_size);
 
 <div class="container">
 <?php
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true)
+if($flag_loggedin)
 {
 ?>
     <div class="row">
@@ -84,12 +89,20 @@ else
         $customdate = $wdate[0].' '.get_day($wdate[0], "en").' '.$wdate[1];
 ?>
 <?php
-        if((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && $visibility == 0)
+        if($flag_loggedin && $visibility == 0)
         {
 ?>
             <section class="card bg-secondary text-white mt-3 mb-3">
-                <div class="card-body"><?php echo $content; ?> <small class="small">(Private)</small></div>
-                <div class="card-footer small"><?php echo $customdate; ?></div>
+                <div class="card-body p-3">
+                    <p>
+                        <?php echo $content; ?> <small class="small">(Private)</small>
+                    </p>
+                    <div class="btn-group btn-group-sm">
+                        <a type="button" class="btn m-0 p-0 text-white">Delete</a>
+                        <a type="button" class="btn m-0 py-0 text-white">Make Public</a>
+                    </div>
+                </div>
+                <div class="card-footer p-3 small"><?php echo $customdate; ?></div>
             </section>
 <?php
         }
@@ -97,8 +110,23 @@ else
         {
 ?>
             <section class="card mt-3 mb-3">
-                <div class="card-body"><?php echo $content; ?></div>
-                <div class="card-footer small"><?php echo $customdate; ?></div>
+                <div class="card-body p-3">
+                    <p <?php if(!$flag_loggedin) echo "class=\"mb-0\""; ?>>
+                        <?php echo $content; ?>
+                    </p>
+<?php
+            if($flag_loggedin)
+            {
+?>
+                    <div class="btn-group btn-group-sm">
+                        <a type="button" class="btn m-0 p-0">Delete</a>
+                        <a type="button" class="btn m-0 py-0">Make Private</a>
+                    </div>
+<?php
+            }
+?>
+                </div>
+                <div class="card-footer p-3 small"><?php echo $customdate; ?></div>
             </section>
 <?php
         }
