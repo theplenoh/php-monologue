@@ -15,6 +15,9 @@ function sanitize($text)
 
 function filter($text)
 {
+    // <https://stackoverflow.com/questions/4144837/auto-link-urls-in-a-string>
+    $text = preg_replace('/((http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/', '<a href="\1">\1</a>', $text);
+
     return nl2br($text);
 }
 
