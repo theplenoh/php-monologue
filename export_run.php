@@ -22,6 +22,7 @@ exit;
     <title><?php echo $screenname; ?>'s Monologue</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +38,7 @@ $query = "SELECT * FROM monologue_entries ORDER by entryID DESC";
 $result = mysqli_query($conn, $query);
 ?>
             <h1>Export Result</h1>
-            <pre>
+            <pre class="result">
 <?php
 $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 $xml .= "<monologue>\n";
@@ -53,7 +54,7 @@ while($record = mysqli_fetch_array($result, MYSQLI_NUM))
     foreach ($entry as $attrib => $content)
     {
         $xml .= "  <{$attrib}>";
-        $xml .= filter($content);
+        $xml .= $content;
         $xml .= "</{$attrib}>\n";
     }
 
