@@ -98,8 +98,8 @@ else
                         <?php echo $content; ?> <small class="small">(Private)</small>
                     </p>
                     <div class="btn-group btn-group-sm">
-                        <a type="button" class="btn m-0 p-0 text-white">Delete</a>
-                        <a type="button" class="btn m-0 py-0 text-white">Make Public</a>
+                        <a type="button" class="btn m-0 p-1 px-2 text-white">Delete</a>
+                        <a type="button" class="btn m-0 p-1 px-2 text-white" href="make_public.php">Make Public</a>
                     </div>
                 </div>
                 <div class="card-footer p-3 small"><?php echo $customdate; ?></div>
@@ -119,8 +119,8 @@ else
             {
 ?>
                     <div class="btn-group btn-group-sm">
-                        <a type="button" class="btn m-0 p-0">Delete</a>
-                        <a type="button" class="btn m-0 py-0">Make Private</a>
+                        <a type="button" class="btn btn-light m-0 p-1 px-2">Delete</a>
+                        <a type="button" class="btn btn-light m-0 p-1 px-2" href="make_private.php">Make Private</a>
                     </div>
 <?php
             }

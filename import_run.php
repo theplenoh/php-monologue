@@ -22,6 +22,7 @@ exit;
     <title><?php echo $screenname; ?>'s Monologue</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +39,7 @@ exit;
 $xml=simplexml_load_file("backups/backup-monologue-20220203-154609.xml") or die("Error: cannot create object");
 ?>
             </p>
-            <pre>
+            <pre class="result">
 <?php
 $idx = count($xml->entry) - 1;
 for($idx; $idx >= 0; $idx--)
