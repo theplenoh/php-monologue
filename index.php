@@ -16,7 +16,11 @@ else
 $page_size = 15;
 $page_scale = 5;
 
-$result = mysqli_query($conn, "SELECT COUNT(*) FROM monologue_entries");
+if($flag_loggedin)
+    $result = mysqli_query($conn, "SELECT COUNT(*) FROM monologue_entries");
+else
+    $result = mysqli_query($conn, "SELECT COUNT(*) FROM monologue_entries WHERE visibility = 1");
+
 $total = mysqli_fetch_array($result)[0];
 
 $page_max = ceil($total / $page_size);
@@ -77,7 +81,10 @@ else
 
     $block = floor(($page_num - 1) / $page_scale);
 
-    $query = "SELECT * FROM monologue_entries ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
+    if($flag_loggedin)
+        $query = "SELECT * FROM monologue_entries ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
+    else
+        $query = "SELECT * FROM monologue_entries WHERE visibility = 1 ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
     $result = mysqli_query($conn, $query);
 ?>
 <?php
@@ -98,7 +105,7 @@ else
                         <?php echo $content; ?> <small class="small">(Private)</small>
                     </p>
                     <div class="btn-group btn-group-sm">
-                        <a type="button" class="btn m-0 p-1 px-2 text-white">Delete</a>
+                        <a type="button" class="btn m-0 p-1 px-2 text-white" href="del_entry.php?entryID=<?php echo $entry['entryID']; ?>">Delete</a>
                         <a type="button" class="btn m-0 p-1 px-2 text-white" href="make_public.php">Make Public</a>
                     </div>
                 </div>
@@ -119,7 +126,7 @@ else
             {
 ?>
                     <div class="btn-group btn-group-sm">
-                        <a type="button" class="btn btn-light m-0 p-1 px-2">Delete</a>
+                        <a type="button" class="btn btn-light m-0 p-1 px-2" href="del_entry.php?entryID=<?php echo $entry['entryID']; ?>">Delete</a>
                         <a type="button" class="btn btn-light m-0 p-1 px-2" href="make_private.php">Make Private</a>
                     </div>
 <?php
