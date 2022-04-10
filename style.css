@@ -3,3 +3,7 @@
 .result {
     height: 25rem;
 }
+
+section.card.text-white .card-body p a {
+    color: #ffffff;
+}
