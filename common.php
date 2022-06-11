@@ -19,6 +19,7 @@ function filter($text)
     $text = preg_replace('/((http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/', '<a href="\1">\1</a>', $text);
 
     $text = str_replace("--", "&mdash;", $text);
+    $text = str_replace("...", "&mldr;", $text);
 
     $text = nl2br($text);
 
