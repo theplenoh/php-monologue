@@ -14,4 +14,12 @@ location.href="login.php";
 EOT;
 exit;
 }
+
+$entryID = $_GET['entryID'];
+
+$query = "UPDATE monologue_entries SET visibility = 0 where entryID = {$entryID}";
+
+mysqli_query($conn, $query);
+
+header("Location: index.php");
 ?>
