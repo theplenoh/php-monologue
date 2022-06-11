@@ -128,7 +128,7 @@ else
 ?>
                     <div class="btn-group btn-group-sm">
                         <a type="button" class="btn btn-light m-0 p-1 px-2" href="del_entry.php?entryID=<?php echo $entry['entryID']; ?>">Delete</a>
-                        <a type="button" class="btn btn-light m-0 p-1 px-2" href="make_private.php">Make Private</a>
+                        <a type="button" class="btn btn-light m-0 p-1 px-2" href="make_private.php?entryID=<?php echo $entry['entryID']; ?>">Make Private</a>
                     </div>
 <?php
             }
