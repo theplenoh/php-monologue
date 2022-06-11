@@ -107,7 +107,7 @@ else
                     </p>
                     <div class="btn-group btn-group-sm">
                         <a type="button" class="btn m-0 p-1 px-2 text-white" href="del_entry.php?entryID=<?php echo $entry['entryID']; ?>">Delete</a>
-                        <a type="button" class="btn m-0 p-1 px-2 text-white" href="make_public.php">Make Public</a>
+                        <a type="button" class="btn m-0 p-1 px-2 text-white" href="make_public.php?entryID=<?php echo $entry['entryID']; ?>">Make Public</a>
                     </div>
                 </div>
                 <div class="card-footer p-3 small"><?php echo $customdate; ?></div>
