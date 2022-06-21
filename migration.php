@@ -41,7 +41,7 @@ exit;
             </section>
             <section>
                 <h2>Import</h2>
-                <form method="post" action="import_run.php">
+                <form method="post" action="import_confirm.php">
 <?php
 $path = __DIR__.'/backups';
 $files = scandir($path);
