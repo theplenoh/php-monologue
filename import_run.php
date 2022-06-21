@@ -33,18 +33,23 @@ exit;
 <div class="container">
     <div class="row">
         <div class="col-xs-12 w-100 p-3">
-            <h1>Import Result</h1>
-            <p>
+            <h1>Import Preview</h1>
+            <form method="post" action="import_confirm.php">
+                <p>
 <?php
-$xml=simplexml_load_file("backups/backup-monologue-20220203-154609.xml") or die("Error: cannot create object");
+$filename = $_POST['backup-file'];
 ?>
-            </p>
-            <pre class="result">
+<?php
+$xml=simplexml_load_file("backups/{$filename}") or die("Error: cannot create object");
+echo "Backup filename: backups/{$filename}";
+?>
+                </p>
+                <pre class="result">
 <?php
 $idx = count($xml->entry) - 1;
 for($idx; $idx >= 0; $idx--)
 {
-    $content = ($xml->entry[$idx]->content);
+    $content = htmlentities($xml->entry[$idx]->content, ENT_QUOTES);
     $wdate = ($xml->entry[$idx]->wdate);
     $visibility = ($xml->entry[$idx]->visibility)=="public"? "1":"0";
 
@@ -55,7 +60,12 @@ for($idx; $idx >= 0; $idx--)
 }
 mysqli_close($conn);
 ?>
-            </pre>
+                </pre>
+                <p>
+                    <input type="hidden" name="backup-file" value="<?=$filename?>">
+                    <input type="submit" value="Confirm" class="btn btn-danger">
+                </p>
+            </form>
         </div>
     </div>
 </div>

@@ -70,7 +70,6 @@ echo(htmlentities($xml));
 $datetime = date("Ymd-His", time());
 
 $filename = "backups/backup-monologue-{$datetime}.xml";
-//$homedir = substr($_SERVER['DOCUMENT_ROOT'], 0, strrpos($_SERVER['DOCUMENT_ROOT'], '/'));
 
 $filepath = $filename;
 
