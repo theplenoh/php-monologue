@@ -34,5 +34,5 @@ for($idx; $idx >= 0; $idx--)
 mysqli_close($conn);
 ?>
 <?php
-header("Location: migration.php");
+header("Location: index.php");
 ?>
