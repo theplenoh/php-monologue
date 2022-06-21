@@ -41,9 +41,27 @@ exit;
             </section>
             <section>
                 <h2>Import</h2>
-                <p>
-                    <a class="btn btn-primary" href="import_run.php">Run!</a>
-                </p>
+                <form method="post" action="import_run.php">
+<?php
+$path = __DIR__.'/backups';
+$files = scandir($path);
+$files = array_diff(scandir($path), array('.', '..'));
+?>
+                    <select name="backup-file" class="custom-select mb-2">
+                        <option selected>Choose your backup file</option>
+<?php
+foreach($files as $idx => $filename)
+{
+?>
+                        <option value="<?=$filename?>"><?=$filename?></option>
+<?php
+}
+?>
+                    </select>
+                    <p>
+                        <input type="submit" value="Select" class="btn btn-primary">
+                    </p>
+                </form>
             </section>
         </div>
     </div>
