@@ -41,6 +41,31 @@ function get_day($date, $locale)
     }
 }
 
+function encryptCookie($value)
+{
+    $key = bin2hex(openssl_random_pseudo_bytes(4));
+    var_dump($key);
+
+    $method = "aes-256-cbc";
+    $ivlen = openssl_cipher_iv_length($method);
+    $iv = openssl_random_pseudo_bytes($ivlen);
+
+    $ciphertext = openssl_encrypt($value, $method, $key, $options=0, $iv);
+
+    return base64_encode($ciphertext."::".$iv."::".$key);
+}
+
+function decryptCookie($ciphertext)
+{
+    $cipher = "aes-256-cbc";
+
+    list($encrypted_data, $iv, $key) = explode("::", base64_decode($ciphertext));
+
+    return openssl_decrypt($encrypted_data, $cipher, $key, 0, $iv);
+}
+
+$expiry_period = 7;
+
 /*** database ***/
 require_once "dbinfo.php";
 
