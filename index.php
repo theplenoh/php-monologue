@@ -10,7 +10,7 @@ else if(isset($_COOKIE['rememberme']))
 {
 $userID = decryptCookie($_COOKIE['rememberme']);
 
-$query = "SELECT * from monologue_auth WHERE userID='{$userID}'";
+$query = "SELECT * from {$db_prefix}auth WHERE userID='{$userID}'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result);
 
@@ -32,9 +32,9 @@ $page_size = 15;
 $page_scale = 5;
 
 if($flag_loggedin)
-    $result = mysqli_query($conn, "SELECT COUNT(*) FROM monologue_entries");
+    $result = mysqli_query($conn, "SELECT COUNT(*) FROM {$db_prefix}entries");
 else
-    $result = mysqli_query($conn, "SELECT COUNT(*) FROM monologue_entries WHERE visibility = 1");
+    $result = mysqli_query($conn, "SELECT COUNT(*) FROM {$db_prefix}entries WHERE visibility = 1");
 
 $total = mysqli_fetch_array($result)[0];
 
@@ -98,9 +98,9 @@ else
     $block = floor(($page_num - 1) / $page_scale);
 
     if($flag_loggedin)
-        $query = "SELECT * FROM monologue_entries ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
+        $query = "SELECT * FROM {$db_prefix}entries ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
     else
-        $query = "SELECT * FROM monologue_entries WHERE visibility = 1 ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
+        $query = "SELECT * FROM {$db_prefix}entries WHERE visibility = 1 ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
     $result = mysqli_query($conn, $query);
 ?>
 <?php

@@ -34,7 +34,7 @@ exit;
 $username = sanitize($username);
 $password = sanitize($password);
 
-$query = "SELECT userID, username, password FROM monologue_auth WHERE username=?";
+$query = "SELECT userID, username, password FROM {$db_prefix}auth WHERE username=?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "s", $param_username);
 $param_username = $username;

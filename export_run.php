@@ -34,7 +34,7 @@ exit;
     <div class="row">
         <div class="col-xs-12 w-100 p-3">
 <?php
-$query = "SELECT * FROM monologue_entries ORDER by entryID DESC";
+$query = "SELECT * FROM {$db_prefix}entries ORDER by entryID DESC";
 $result = mysqli_query($conn, $query);
 ?>
             <h1>Export Result</h1>

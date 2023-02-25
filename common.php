@@ -68,10 +68,11 @@ $expiry_period = 7;
 
 /*** database ***/
 require_once "config/dbinfo.php";
+$db_prefix = DB_PREFIX;
 
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 mysqli_query($conn, "SET NAMES utf8");
 
-$result = mysqli_query($conn, "SELECT screenname FROM monologue_auth");
+$result = mysqli_query($conn, "SELECT screenname FROM {$db_prefix}auth");
 $screenname = mysqli_fetch_array($result, MYSQLI_ASSOC)['screenname'];
 ?>

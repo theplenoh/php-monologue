@@ -53,7 +53,7 @@ for($idx; $idx >= 0; $idx--)
     $wdate = ($xml->entry[$idx]->wdate);
     $visibility = ($xml->entry[$idx]->visibility)=="public"? "1":"0";
 
-    $query = "INSERT INTO monologue_entries (content, wdate, visibility) VALUES('{$content}', '{$wdate}', '{$visibility}')";
+    $query = "INSERT INTO {$db_prefix}entries (content, wdate, visibility) VALUES('{$content}', '{$wdate}', '{$visibility}')";
 
     echo "[$idx]".$query."\n";
 }
