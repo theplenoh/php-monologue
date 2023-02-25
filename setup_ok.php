@@ -89,6 +89,7 @@ define('DB_SERVER', '{$db_server}');
 define('DB_USERNAME', '{$db_username}');
 define('DB_PASSWORD', '{$db_password}');
 define('DB_NAME', '{$db_database}');
+define('DB_PREFIX', '{$db_prefix}');
 ?>
 EOT;
 
