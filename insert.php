@@ -8,7 +8,7 @@ $content = sanitize($_POST['content']);
 $wdate = date("Y-m-d H:i", time());
 $visibility = isset($_POST['visibility'])? (int)0:(int)1;
 
-$query = "INSERT INTO monologue_entries (content, wdate, visibility) VALUES('{$content}', '{$wdate}', $visibility)";
+$query = "INSERT INTO {$db_prefix}entries (content, wdate, visibility) VALUES('{$content}', '{$wdate}', $visibility)";
 
 mysqli_query($conn, $query);
 mysqli_close($conn);

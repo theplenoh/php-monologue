@@ -17,7 +17,7 @@ exit;
 
 $entryID = $_GET['entryID'];
 
-$query = "UPDATE monologue_entries SET visibility = 1 where entryID = {$entryID}";
+$query = "UPDATE {$db_prefix}entries SET visibility = 1 where entryID = {$entryID}";
 
 mysqli_query($conn, $query);
 

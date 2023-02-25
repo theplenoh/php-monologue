@@ -17,7 +17,7 @@ exit;
 
 $entryID = $_GET['entryID'];
 
-mysqli_query($conn, "DELETE FROM monologue_entries WHERE entryID='{$entryID}'");
+mysqli_query($conn, "DELETE FROM {$db_prefix}entries WHERE entryID='{$entryID}'");
 echo<<<EOT
 <script>
 alert("삭제되었습니다.");
