@@ -7,3 +7,9 @@
 section.card.text-white .card-body p a {
     color: #ffffff;
 }
+
+img.icon {
+    width: 18px;
+    height: auto;
+    margin: 0 3px 3px;
+}
