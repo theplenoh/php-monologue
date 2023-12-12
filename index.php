@@ -98,9 +98,9 @@ else
     $block = floor(($page_num - 1) / $page_scale);
 
     if($flag_loggedin)
-        $query = "SELECT * FROM {$db_prefix}entries ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
+        $query = "SELECT * FROM {$db_prefix}entries ORDER BY pinned DESC, entryID DESC LIMIT ${offset}, ${page_size}";
     else
-        $query = "SELECT * FROM {$db_prefix}entries WHERE visibility = 1 ORDER BY entryID DESC LIMIT ${offset}, ${page_size}";
+        $query = "SELECT * FROM {$db_prefix}entries WHERE visibility = 1 ORDER BY pinned DESC, entryID DESC LIMIT ${offset}, ${page_size}";
     $result = mysqli_query($conn, $query);
 ?>
 <?php
@@ -110,6 +110,7 @@ else
         $visibility = (int)$entry['visibility'];
         $wdate = explode(" ", $entry['wdate']);
         $customdate = $wdate[0].' '.get_day($wdate[0], "en").' '.$wdate[1];
+        $pinned = (int)$entry['pinned'];
 ?>
 <?php
         if($flag_loggedin && $visibility == 0)
@@ -118,11 +119,25 @@ else
             <section class="card bg-secondary text-white mt-3 mb-3">
                 <div class="card-body p-3">
                     <p>
-                        <?php echo $content; ?> <small class="small">(Private)</small>
+                        <?php if($pinned == 1) echo "<img alt=\"Pinned\" class=\"icon\" src=\"images/red-pin-256px.png\">"; ?><?php echo $content; ?> <small class="small">(Private)</small> <?php if($pinned == 1) echo "<small class=\"small\">(Pinned)</small>"; ?>
                     </p>
                     <div class="btn-group btn-group-sm">
                         <a type="button" class="btn m-0 p-1 px-2 text-white" href="del_entry.php?entryID=<?php echo $entry['entryID']; ?>">Delete</a>
                         <a type="button" class="btn m-0 p-1 px-2 text-white" href="make_public.php?entryID=<?php echo $entry['entryID']; ?>">Make Public</a>
+<?php
+            if(!$pinned)
+            {
+?>
+                        <a type="button" class="btn m-0 p-1 px-2 text-white" href="pin_entry.php?entryID=<?php echo $entry['entryID']; ?>">Pin</a>
+<?php
+            }
+            else
+            {
+?>
+                        <a type="button" class="btn m-0 p-1 px-2 text-white" href="unpin_entry.php?entryID=<?php echo $entry['entryID']; ?>">Unpin</a>
+<?php
+            }
+?>
                     </div>
                 </div>
                 <div class="card-footer p-3 small"><?php echo $customdate; ?></div>
@@ -135,7 +150,7 @@ else
             <section class="card mt-3 mb-3">
                 <div class="card-body p-3">
                     <p <?php if(!$flag_loggedin) echo "class=\"mb-0\""; ?>>
-                        <?php echo $content; ?>
+                        <?php if($pinned == 1) echo "<img alt=\"Pinned\" class=\"icon\" src=\"images/red-pin-256px.png\">"; ?><?php echo $content; ?> <?php if($pinned == 1) echo "<small class=\"small\">(Pinned)</small>"; ?>
                     </p>
 <?php
             if($flag_loggedin)
@@ -144,6 +159,20 @@ else
                     <div class="btn-group btn-group-sm">
                         <a type="button" class="btn btn-light m-0 p-1 px-2" href="del_entry.php?entryID=<?php echo $entry['entryID']; ?>">Delete</a>
                         <a type="button" class="btn btn-light m-0 p-1 px-2" href="make_private.php?entryID=<?php echo $entry['entryID']; ?>">Make Private</a>
+<?php
+                if(!$pinned)
+                {
+?>
+                        <a type="button" class="btn btn-light m-0 p-1 px-2" href="pin_entry.php?entryID=<?php echo $entry['entryID']; ?>">Pin</a>
+<?php
+                }
+                else
+                {
+?>
+                        <a type="button" class="btn btn-light m-0 p-1 px-2" href="unpin_entry.php?entryID=<?php echo $entry['entryID']; ?>">Unpin</a>
+<?php
+                }
+?>
                     </div>
 <?php
             }
