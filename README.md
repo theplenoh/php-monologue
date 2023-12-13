@@ -10,7 +10,7 @@ CREATE TABLE monologue_entries (
     content text NOT NULL, 
     wdate varchar(16) NOT NULL, 
     visibility int(1) NOT NULL, 
-    pinned tinyint NOT NULL, 
+    pinned tinyint NOT NULL default 0, 
     PRIMARY KEY(entryID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ```
