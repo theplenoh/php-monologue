@@ -49,11 +49,12 @@ echo "Backup filename: backups/{$filename}";
 $idx = count($xml->entry) - 1;
 for($idx; $idx >= 0; $idx--)
 {
-    $content = htmlentities($xml->entry[$idx]->content, ENT_QUOTES);
+    $content = htmlspecialchars_decode($xml->entry[$idx]->content);
     $wdate = ($xml->entry[$idx]->wdate);
     $visibility = ($xml->entry[$idx]->visibility)=="public"? "1":"0";
+    $pinned = ($xml->entry[$idx]->pinned)=="pinned"? "1":"0";
 
-    $query = "INSERT INTO {$db_prefix}entries (content, wdate, visibility) VALUES('{$content}', '{$wdate}', '{$visibility}')";
+    $query = "INSERT INTO {$db_prefix}entries (content, wdate, visibility, pinned) VALUES('{$content}', '{$wdate}', '{$visibility}', '{$pinned}')";
 
     echo "[$idx]".$query."\n";
 }

@@ -48,13 +48,14 @@ while($record = mysqli_fetch_array($result, MYSQLI_NUM))
     $entry['content'] = $record[1];
     $entry['wdate'] = $record[2];
     $entry['visibility'] = $record[3]? "public":"private";
+    $entry['pinned'] = $record[4]? "pinned":"unpinned";
 
     $xml .= "<entry>\n";
 
     foreach ($entry as $attrib => $content)
     {
         $xml .= "  <{$attrib}>";
-        $xml .= $content;
+        $xml .= htmlspecialchars($content);
         $xml .= "</{$attrib}>\n";
     }
 
