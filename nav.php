@@ -1,5 +1,5 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="index.php"><?php echo "{$screenname}&rsquo;s Monologue"; ?></a>
+        <a class="navbar-brand" href="index.php"><?php echo "{$screenname}&rsquo;s Thoughts"; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
