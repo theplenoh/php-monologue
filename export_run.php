@@ -19,7 +19,7 @@ exit;
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $screenname; ?>'s Monologue</title>
+    <title><?php echo $screenname; ?>'s Thoughts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
@@ -41,7 +41,7 @@ $result = mysqli_query($conn, $query);
             <pre class="result">
 <?php
 $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-$xml .= "<monologue>\n";
+$xml .= "<thoughts>\n";
 
 while($record = mysqli_fetch_array($result, MYSQLI_NUM))
 {
@@ -62,7 +62,7 @@ while($record = mysqli_fetch_array($result, MYSQLI_NUM))
     $xml .= "</entry>\n";
 }
 
-$xml .= "</monologue>";
+$xml .= "</thoughts>";
 echo(htmlentities($xml));
 ?>
             </pre>
@@ -70,7 +70,7 @@ echo(htmlentities($xml));
 <?php
 $datetime = date("Ymd-His", time());
 
-$filename = "backups/backup-monologue-{$datetime}.xml";
+$filename = "backups/backup-thoughts-{$datetime}.xml";
 
 $filepath = $filename;
 
