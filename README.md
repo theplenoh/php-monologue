@@ -1,6 +1,8 @@
 # Scibx Thoughts
 
-A personal Twitter alternative written in PHP
+Scibx Thoughts is a personal Twitter alternative written in PHP.
+
+You can build a safe place where you can freely express your thoughts and feelings.
 
 ## Create SQL tables
 ### Table `thoughts_entries`
