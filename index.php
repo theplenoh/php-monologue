@@ -227,7 +227,7 @@ if($total > 0)
 ?>
             <footer class="mt-3 mb-3">
                 <p>
-                    <?php echo $screenname; ?>의 생각기록입니다. 자신의 생각을 그때그때 기록하는 곳입니다.
+                    <?php echo $screenname; ?>의 생각기록소입니다. 자신의 생각을 그때그때 기록하는 곳입니다.
                 </p>
             </footer>
         </div>
