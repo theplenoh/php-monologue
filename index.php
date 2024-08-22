@@ -44,7 +44,7 @@ $page_max = ceil($total / $page_size);
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $screenname; ?>'s Monologue</title>
+    <title><?php echo $screenname; ?>'s Thoughts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -227,7 +227,7 @@ if($total > 0)
 ?>
             <footer class="mt-3 mb-3">
                 <p>
-                    <?php echo $screenname; ?>의 독백로그(모놀로그)입니다. 자신의 생각을 그때그때 기록하는 곳입니다.
+                    <?php echo $screenname; ?>의 생각기록입니다. 자신의 생각을 그때그때 기록하는 곳입니다.
                 </p>
             </footer>
         </div>
