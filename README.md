@@ -1,4 +1,4 @@
-# php-monologue
+# Scibx Thoughts
 
 A personal Twitter alternative written in PHP
 
