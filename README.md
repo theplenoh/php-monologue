@@ -3,9 +3,9 @@
 A personal Twitter alternative written in PHP
 
 ## Create SQL tables
-### Table `monologue_entries`
+### Table `thoughts_entries`
 ```
-CREATE TABLE monologue_entries (
+CREATE TABLE thoughts_entries (
     entryID int(11) NOT NULL AUTO_INCREMENT, 
     content text NOT NULL, 
     wdate varchar(16) NOT NULL, 
@@ -14,9 +14,9 @@ CREATE TABLE monologue_entries (
     PRIMARY KEY(entryID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ```
-### Table `monologue_auth`
+### Table `thoughts_auth`
 ```
-CREATE TABLE monologue_auth (
+CREATE TABLE thoughts_auth (
     userID int(11) NOT NULL AUTO_INCREMENT, 
     username varchar(50) NOT NULL UNIQUE, 
     password varchar(255) NOT NULL, 
